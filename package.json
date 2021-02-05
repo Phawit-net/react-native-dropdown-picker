@@ -30,6 +30,7 @@
     "javascript"
   ],
   "dependencies": {
+    "react-native-linear-gradient": "^2.5.6",
     "react-native-vector-icons": "^7.0.0"
   },
   "author": "Hossein Zare",
