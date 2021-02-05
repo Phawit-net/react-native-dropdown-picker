@@ -574,51 +574,38 @@ class DropDownPicker extends React.Component {
                     ]}
                     disabled={item?.disabled || false === true}
                   >
-                    <LinearGradient
-                      start={{ x: 1, y: 0 }}
-                      end={{ x: 0, y: 1 }}
-                      colors={[
-                        "#27889F",
-                        "#2C8CA2",
-                        "#3B98AA",
-                        "#55ACB9",
-                        "#78C8CD",
-                        "#7CCBD0",
-                      ]}
+                    <View
+                      style={{
+                        flexDirection:
+                          this.props.itemStyle?.flexDirection ?? "row",
+                        ...(this.props.itemStyle.hasOwnProperty(
+                          "justifyContent"
+                        ) && {
+                          justifyContent: this.props.itemStyle.justifyContent,
+                        }),
+                        alignContent: "center",
+                      }}
                     >
-                      <View
-                        style={{
-                          flexDirection:
-                            this.props.itemStyle?.flexDirection ?? "row",
-                          ...(this.props.itemStyle.hasOwnProperty(
-                            "justifyContent"
-                          ) && {
-                            justifyContent: this.props.itemStyle.justifyContent,
-                          }),
-                          alignContent: "center",
-                        }}
+                      {item.icon && item.icon()}
+                      <Text
+                        style={[
+                          this.props.labelStyle,
+                          multiple
+                            ? this.isSelected(item) &&
+                              this.props.activeLabelStyle
+                            : this.state.choice.value === item.value &&
+                              this.props.activeLabelStyle,
+                          {
+                            ...(item.icon && {
+                              marginHorizontal: 5,
+                            }),
+                          },
+                        ]}
+                        {...this.props.labelProps}
                       >
-                        {item.icon && item.icon()}
-                        <Text
-                          style={[
-                            this.props.labelStyle,
-                            multiple
-                              ? this.isSelected(item) &&
-                                this.props.activeLabelStyle
-                              : this.state.choice.value === item.value &&
-                                this.props.activeLabelStyle,
-                            {
-                              ...(item.icon && {
-                                marginHorizontal: 5,
-                              }),
-                            },
-                          ]}
-                          {...this.props.labelProps}
-                        >
-                          {this.getLabel(item)}
-                        </Text>
-                      </View>
-                    </LinearGradient>
+                        {this.getLabel(item)}
+                      </Text>
+                    </View>
                     {this.state.props.multiple &&
                       this.state.choice.findIndex(
                         (i) => i.label === item.label && i.value === item.value
