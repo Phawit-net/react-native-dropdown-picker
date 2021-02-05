@@ -8,7 +8,7 @@ import {
   Platform,
   TextInput,
 } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import LinearGradient from "react-native-linear-gradient";
 // Icon
 import Feather from "react-native-vector-icons/Feather";
 Feather.loadFont();
